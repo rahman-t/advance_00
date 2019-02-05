@@ -1,0 +1,44 @@
+#include<unistd.h>
+#include<sys/types.h>
+#include<string.h>
+#define K 1024
+
+char *converting(int n, int b)
+{ 
+  char buf[K];
+  int x = K-1;
+  buf[x] = '\0';
+  do {
+    buf[--x] = (n%b)+'0';
+    n = n/b;
+  } while(n>0);
+    
+ return buf+x;
+}
+
+int main (int argc, char *argv)
+{
+  int num = 0;
+  int base = 10;
+  char *sym;
+  if (argv[1] != 0){
+    if(argv[1][0] == '-') {
+      switch(argv[1][1]) {
+        case 'b': base = 2; break;
+        case 'h': base = 16; break;
+        case 'o': base = 8; break;
+        default:
+          write(STDOUT_FILENO, "Illegal switch\n", 15);
+          exit(0);
+          }
+      }
+    }
+    
+   while ( num <= 127 ) {
+    sym = converting(num, base);
+    write(STDOUT_FILENO, sym, strlen(sym));
+    num++;
+    }
+    
+  }
+  
