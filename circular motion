@@ -1,0 +1,57 @@
+#include <iostream>
+//circular motion of robot
+#define N 0
+#define E 1
+#define S 2
+#define W 3
+
+bool iscirc_motion(char path[]){
+    
+    int x =0, y = 0;
+    int dir = N;
+    
+    for (int i = 0; i < path[i]; i++) {
+        
+        char move = path[i];
+        
+        if (move == 'L') {
+            dir = ( 4 + dir - 1)%4;
+        }
+        else if (move == 'R') {
+            dir = (dir + 1)%4;
+        }
+        else {
+            if (dir == N) 
+                y++;
+            else if (dir == S) 
+                y--;
+            else if 
+                (dir == E) x++;
+            else 
+                x--;
+        }
+    }
+    
+    return (x == 0 && y == 0);
+}
+
+using namespace std;
+int main()
+{
+    int n;
+    
+    cout << "How long is the path? " ;
+    cin >> n;
+    
+    char path[n-1];
+    
+    cout << "Enter path to follow... ";
+    cin >> path;
+    iscirc_motion(path);
+    
+    if (iscirc_motion(path)) cout << "The path is circular"<< endl;
+    else cout << " Not circular" << endl;
+    
+
+    return 0;
+}
