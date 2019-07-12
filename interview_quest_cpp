@@ -1,0 +1,44 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+// what if it's a target that can be reached by adding up more than
+// one pair of numbers ? Perhaps using vectors would be helpful...
+// {1,4,6,7,8,2}
+//target: 7
+void indexSum( int arr[], int t, int n) {
+  
+  int sum = 0;
+  int j = 0, i = 0;
+  
+  while (i < n){
+    j = i+1;
+    for (; j < n; j++){
+      sum = arr[i] + arr[j];
+      if (sum == t) {
+        cout << "The two indexes are: "<< i << " and "<< j;
+        return;
+      }
+      else continue;
+    }
+    i++;
+  }
+  
+  cout << "Not found.";
+  
+}
+  
+  
+
+// To execute C++, please define "int main()"
+int main() {
+  
+  int arr[] = {1,4,6,7,8,2};
+  int target = 10;
+  int n = end(arr) - begin(arr);
+  
+  indexSum(arr, target, n);
+  
+
+  return 0;
+}
