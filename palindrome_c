@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<string.h>
+
+#define SIZE 20
+
+void isPalindrome(char word[]) {
+  int i = 0, j = strlen(word) - 1;
+  int l = strlen(word);
+  while (i < l && j > i) {
+    if (word[i] != word[j]) {
+      printf("Not a palindrome!\n");
+      exit(0);
+      }
+      i++;
+      j--;
+   }
+   printf("Palindrome!\n");
+   return 0;
+}
+
+int main() {
+
+  char word[SIZE];
+  
+  printf("Enter a word: ");
+  scanf("%s\n", word);
+  
+  isPalindrome(word);
+}
