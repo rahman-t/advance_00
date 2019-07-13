@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include<bits/stdc++.h>
+
+class Node {
+    public:
+    int data;
+    Node *next;
+};
+
+using namespace std;
+
+Node *sendNode(int n) {
+    
+    Node *newNode = new Node();
+    newNode->data = n;
+    newNode->next = NULL;
+    
+    return newNode;
+}
+
+int lengthOfList(Node *head) {
+    int count = 0;
+    while (head != NULL){
+        count++;
+        head = head->next;
+    }
+    
+    return count;
+}
+
+//passing current Node, desired position, and data to insert
+void insertNewNode(Node **curr, int pos, int x, int s) { 
+    
+    if (pos < 1 || pos > s) exit(0);
+    else {
+    while(pos--){
+        if(pos == 0) {
+        Node *temp = sendNode(x);
+        temp->next = *curr;
+        *curr = temp;
+        }
+        else {
+            curr = &(*curr)->next;
+        }
+        s++;
+    }
+        
+    }
+}
+void printList(Node *n){
+    
+    while (n != NULL){
+        cout << n->data << " ";
+        n = n->next;
+    }
+}
+
+
+int main() //size of linked list created: 3
+{
+    Node *head = NULL;
+    Node *second = NULL; 
+    Node *third = NULL;
+    
+    int where = 3;
+    int item = 77;
+    
+    head = new Node();
+    second = new Node();
+    third = new Node();
+    
+    head->data = 56;
+    head->next = second;
+    second->data = 62;
+    second->next = third;
+    third->data = 45;
+    third->next = NULL;
+    
+    int n = lengthOfList(head);
+    
+    cout <<"Length of list: "<<lengthOfList(head);
+    cout <<"\nCurrent list: ";
+    printList(head);
+    insertNewNode(&head, where, item, n);
+    cout << "\nList after insertion: ";
+    printList(head);
+    cout <<"\nNew size: "<<lengthOfList(head);
+    
+
+    return 0;
+}
