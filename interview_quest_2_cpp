@@ -1,0 +1,54 @@
+//Running time a little slow...must think of a way to speed it up
+#include <iostream>
+#include <stdio.h>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+
+void indexSum(vector<int> &arr, int t, int n) {
+  //second array to store the indices of numbers that will add up to the target sum
+  vector <int> arr2;
+  int sum = 0, count = 0, a = 0;
+  int j = 0, i = 0;
+  
+  while (i < n && !arr.empty()){
+    j = i+1;
+    for (; j < n; j++){
+      sum = arr[i] + arr[j];
+      if (sum == t) {
+        count += 2;
+        arr2.push_back(i);
+        arr2.push_back(j);
+      }
+      else continue;
+    }
+    i++;
+  }
+  
+  cout << count <<" numbers can be found and added up to " << t << endl;
+  cout << "Those numbers are located at indices: ";
+  for (int x : arr2) {
+      a += 1;
+      
+      if( a%2 != 0) cout << "( ";
+      cout << x << " ";
+      if (a%2 == 0){
+          cout <<")";
+      }
+  }
+  return;
+}
+
+
+// To execute C++, please define "int main()"
+int main() {
+  
+  vector<int>arr = {1,4,6,7,8,2};
+  int target = 10;
+  int n = arr.size();
+  
+  indexSum(arr, target, n);
+
+  return 0;
+}
