@@ -1,0 +1,46 @@
+/* In main, n represents the number of steps taken 
+    and the string to be entered is to be comprised of U and D. 
+    U denoting the a step above sea level and
+    D, a step below seal level.
+*/
+#include <stdio.h>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int vaLLeys(string p, int num){
+    int slvl = 0;
+    int valley = 0;
+    
+    for (int i = 0; i < num; i++){
+        if(p[i] == 'U') slvl++;
+        else if (p[i] == 'D'){
+            if (slvl == 0) valley++;
+            slvl--;
+        }
+    }
+    return valley;
+}
+
+int main() 
+{
+    int n;
+    string path;
+    cout <<"Number of steps taken: ";
+    cin >> n;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
+    cout << "\nPath description: ";
+    getline(cin, path);
+    
+    if (n != path.length()) {
+        cout << "\nThe length you entered is not equal to the length of the path\n";
+        cout << "Please review the path you entered.";
+        exit(0);
+    }
+    
+    int endPath = vaLLeys(path, n);
+    cout << "\nNumber of valleys traversed: " << endPath << endl;
+    
+    return 0;
+}
