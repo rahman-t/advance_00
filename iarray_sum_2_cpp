@@ -1,4 +1,4 @@
-//Running time a little slow...must think of a way to speed it up
+//Running time a little slow. some other way to handle other than vector? Unrolled linked list?
 #include <iostream>
 #include <stdio.h>
 #include<bits/stdc++.h>
