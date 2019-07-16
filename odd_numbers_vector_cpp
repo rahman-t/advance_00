@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> oddNumbers(int a, int b){
+    vector<int> result;
+    int i = a;
+    while(i < b) {
+        if(i%2 != 0){
+            result.push_back(i);
+        }
+        i++;
+    } 
+    if (b%2 != 0) result.push_back(b);
+    
+    return result;
+}
+
+
+int main()
+{   cout << "given  two values x and y"<< endl;
+    cout << "where y < x."<< endl;
+    cout << "The program will then print the odd numbers"<< endl;
+    cout << "in-between them; x and y included\n";
+    
+    int x, y;
+    cout << "\nX: ";
+    cin >> x;
+    cout << "Y: ";
+    cin >> y;
+    cout << endl;
+    
+    vector<int> r = oddNumbers(x, y);
+    
+    for(auto ptr = r.begin(); ptr != r.end(); ptr++){
+        cout << *ptr << endl;
+    }
+    
+    
+    return 0;
+}
