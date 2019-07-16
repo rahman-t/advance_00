@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int number_of_pairs(int a[], int size, int p){
+    int count = 0; //a count of all the pairs I'll end up having 
+    for(int i = 0; i < size; i++) {
+        int self = a[i] * a[i];
+        if (self < p ) count++;
+        for(int j = i+1; j < size; j++){
+            if (a[i] * a[j] < p ) count++;
+        }
+    }
+    return count;
+}
+int main()
+{
+   int arr[] = {2,4,5,6,3};
+   int product = 15;
+   int n = sizeof(arr)/sizeof(arr[0]);
+   
+   int result = number_of_pairs(arr, n, product);
+   cout << "You can have "<< result << " pair(s) of numbers whose product is less than "<< product;
+    return 0;
+}
