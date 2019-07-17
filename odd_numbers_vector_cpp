@@ -18,22 +18,35 @@ vector<int> oddNumbers(int a, int b){
 
 
 int main()
-{   cout << "given  two values x and y"<< endl;
-    cout << "where y < x."<< endl;
-    cout << "The program will then print the odd numbers"<< endl;
-    cout << "in-between them; x and y included\n";
+{   
+    using namespace std::this_thread;
+    using namespace std::chrono;
+    
+    cout << " Given  two values x and y"<< endl;
+    cout << " where y < x."<< endl;
+    cout << " The program will then print the odd numbers"<< endl;
+    cout << " in-between them; x and y included\n";
+    sleep_until(system_clock::now() + seconds(3));
     
     int x, y;
-    cout << "\nX: ";
+    cout << "\n X: ";
     cin >> x;
-    cout << "Y: ";
+    cout << " Y: ";
     cin >> y;
     cout << endl;
     
     vector<int> r = oddNumbers(x, y);
-    
+    cout << " Result: "<< endl;
     for(auto ptr = r.begin(); ptr != r.end(); ptr++){
-        cout << *ptr << endl;
+        cout << " " << *ptr << endl;
+    }
+     
+    cout << " Rotating the vector...\n";
+    sleep_until(system_clock::now() + seconds(3));
+    rotate(r.begin(), r.begin()+lrotate, r.end());
+    
+    for(auto ptr = r.begin(); ptr!=r.end(); ptr++){
+        cout << " "<<*ptr<<endl;
     }
     
     
