@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+int wordCount(char w[], char *s){
+    int flag;
+    int len = strlen(w);
+    int l = strlen(s);
+    int count = 0;
+    
+    for(int i = 0; i <= l - len; i++) {
+        flag = 0;
+        for (int j = 0; j < len; j++){
+            if(w[j] != s[j+i]) {
+                flag = 1;
+                break;
+            }
+        }
+        if (flag == 0) count++;
+    }
+        
+        return count;
+    
+}
+
+int main()
+{
+    char word[50];
+    char *str;
+    
+    printf(" Type the word to count: ");
+    scanf("%s ", word);
+    printf(" Enter another string: ");
+    scanf("%m[^\n] ", &str);
+    
+    int result = wordCount(word, str);
+    printf("\nWord count: %d", result);
+    return 0;
+}
