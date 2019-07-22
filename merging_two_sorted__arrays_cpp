@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void mergeArr(int ar1[], int ar2[], int x, int y){
+    
+    int i, j, l;
+    
+    for (i = y-1; i >= 0; i--) {
+        
+        l = ar1[x-1];
+        
+        for (j = x - 2; j >= 0 && ar1[j] > ar2[i]; j--) {
+           
+            ar1[j+1] = ar1[j];
+        }
+        
+        if (j != x-2 || l > ar2[i] ){
+            
+            ar1[j+1] = ar2[i];
+            ar2[i] = l;
+        }
+    }
+}
+
+int main()
+{
+    int arr1[] = { 10, 14, 20, 25, 29, 33};
+    int arr2[] = {9, 17, 23, 35};
+    
+    int sz1 = sizeof(arr1)/sizeof(arr1[0]);
+    int sz2 = sizeof(arr2)/sizeof(arr2[0]);
+    
+    mergeArr(arr1, arr2, sz1, sz2);
+    
+    cout << " 1st array rearrangement : ";
+    for (int i = 0; i < sz1; i++){
+        
+        cout << " " <<arr1[i] << " ";
+    }
+    cout << endl;
+    
+    cout << " 2nd array rearrangement : ";
+    
+    for (int j = 0; j < sz2; j++){
+        
+        cout << " " <<arr2[j] << " ";
+    }
+
+    return 0;
+}
