@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int missingNumber(int ar[], int n) {
+    
+    int mNum = (n + 1 ) * (n + 2) / 2;
+    
+    for (int i = 0; i < n; i++) {
+        mNum -=ar[i];
+    }
+    return mNum;
+}
+
+int main()
+{
+    int arr[] = {1, 2, 4, 5, 6, 7};
+    int sz = sizeof(arr)/sizeof(arr[0]);
+    
+    int result = missingNumber(arr, sz);
+    
+    cout << " the missing number is " << result;
+
+    return 0;
+}
