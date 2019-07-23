@@ -1,0 +1,101 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void swap(int *a, int *b); //important to have the prototype before actual initialization
+
+/*ptrArr: pointer to the array in the heap, max stands for the total number of elements MinHeap may store
+currSize will account for the number of elements currently in the array.
+*/
+
+class MinHeap {
+    int *ptrArr;
+    int max;         
+    int currSize;
+public:
+    MinHeap(int arr[], int s);
+    int parent(int n) { return (n-1)/2;}
+    int rightC(int n) { return (n*2 +2);}
+    int leftC (int n) { return (n*2 +1);}
+    int getMin() { return ptrArr[0]; }
+    void minHeapify(int n);
+    int getRootMin ();
+};
+
+MinHeap::MinHeap(int arr[], int s) {
+    ptrArr = arr;
+    currSize = s;
+    int j = (currSize - 1)/2;
+    while (j >= 0 ){
+        
+        minHeapify(j);
+        j--;
+    }
+}
+
+int MinHeap::getRootMin(){
+    if(currSize == 0){
+        return INT_MAX;
+    }
+    int root = ptrArr[0];
+    
+    if(currSize > 1) {
+        ptrArr[0] = ptrArr[currSize - 1];
+        minHeapify(0);
+    }
+    currSize--;
+    return root;
+}
+
+void MinHeap::minHeapify(int n) {
+    int lh = leftC(n);
+    int rh = rightC(n);
+    int s = n;
+    
+    if(lh < currSize && ptrArr[lh] < ptrArr[n]) s = lh;
+    if(rh < currSize && ptrArr[rh] < ptrArr[s]) s = rh;
+    
+    if(s != n ){ 
+        swap(&ptrArr[n], &ptrArr[s]);
+        minHeapify(s);
+    }
+}
+
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void heapInsert(int arr[], int& n, int w){
+    
+    n = n + 1;
+    arr[n-1] = w;  
+    
+    MinHeap mInH(arr, n);
+}
+
+
+
+int findSmallestElement(int arr[], int n, int m){
+    
+    MinHeap minH(arr, n);
+    for( int i = 0; i < m-1; i++){
+         minH.getRootMin();
+    }
+    return minH.getMin();
+}
+
+
+int main()
+{
+    int ar[] = {13, 22, 5, 12, 2, 18};
+    int sz = sizeof(ar)/sizeof(ar[0]);
+    int p = 2;
+    if (p == 1) cout << " the 1st smallest number in the array is :" << findSmallestElement(ar, sz, p);
+    if (p == 2) cout << " the 2nd smallest number in the array is :" << findSmallestElement(ar, sz, p);
+    if (p == 3) cout << " the 3rd smallest number in the array is :" << findSmallestElement(ar, sz, p);
+    if (p>=4) cout << " the "<< p<<"th smallest number in the array is :" << findSmallestElement(ar, sz, p);
+
+    return 0;
+}
