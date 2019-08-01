@@ -1,0 +1,81 @@
+/********************************************************
+
+rStack is used as a recursion stack. its role will be to store values that 
+    have already been visited against the node at the end of each vertice
+    Check : https://www.youtube.com/watch?v=joqmqvHC_Bo
+
+**************************************************************************/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Graph {
+    int v;
+    list<int> *arr;
+    bool circleUtil(int v, bool vzt[], bool *rStack);
+    public:
+    Graph(int v);
+    bool isCircle();
+    void addEdge(int v, int w);
+};
+
+Graph::Graph(int v){
+    
+    this->v = v;
+    arr = new list<int>[v];
+}
+
+void Graph::addEdge(int v, int n){
+    
+    arr[v].push_back(n);
+}
+
+bool Graph::isCircle(){
+    
+    bool *vzt = new bool[v];
+    bool *rStack = new bool[v];
+    for(int i = 0; i < v; i++){
+        vzt[i] = false;
+        rStack[i] = false;        //setting every node to false to signal that they haven't been visited yet.
+    }
+    for(int j = 0; j < v; j++){
+        if(circleUtil(j, vzt, rStack)) return true;
+    }
+    
+    return false;
+}
+
+bool Graph::circleUtil(int v, bool vzt[], bool *rStack){
+    
+    if (vzt[v] == false){
+        
+        vzt[v] = true;
+        rStack[v] = true;
+        list<int>::iterator k;
+        for( k = arr[v].begin(); k!=arr[v].end(); k++){
+            if(!vzt[*k] && circleUtil(*k, vzt, rStack)) return true;
+            else if (rStack[*k]) return true;
+        }
+    }
+    rStack[v] = false;
+    return false;
+}
+
+int main()
+{
+    Graph graph(4);
+    graph.addEdge(0,1);
+    graph.addEdge(0,2);
+    //graph.addEdge(1,2);
+    //graph.addEdge(2,0);
+    //graph.addEdge(2,3);
+    //graph.addEdge(3,3);
+    if(graph.isCircle()){
+        cout << " a cycle was found";
+    }
+    else {
+        cout << " no cycle was found";
+    }
+
+    return 0;
+}
