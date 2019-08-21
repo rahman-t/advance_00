@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool checkPhoneNumber(int p){
+    
+    string s = to_string(p);
+    if(s.length() != 8) return false;
+    else return true;
+}
+int main()
+{
+    map<string, int> phoneBook;
+    int n, p;
+    string name;
+    cin >> n;
+    vector<string>dict(n);
+    
+    for(int i = 0; i < n; i++){
+        cin >> name >> p;
+        if(checkPhoneNumber(p)){
+            
+            transform(name.begin(), name.end(), name.begin(), ::tolower);
+            phoneBook.insert(pair<string, int>(name, p)); //or phoneBook[name] = number
+        }
+        else {
+            cout << " Invalid phone number"<<endl;
+            cout << " Please check that the"<<endl;
+            cout << " # is 8-digit long " << endl;
+            return 0;
+        }
+    }
+
+    while(cin >> nameToFind) {
+        if (phoneBook.find(nameToFind) != phoneBook.end()){
+            cout << name << "=" << phoneBook.find(name)->second << endl;
+        }
+        else {
+            cout << "Not found" << endl;
+        }
+    }
+
+    return 0;
+}
