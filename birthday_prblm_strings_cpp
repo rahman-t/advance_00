@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string ltrim(string & );
+
+int birthday(vector<int> s, int d, int m) 
+{
+    int sum;
+    int count = 0;
+
+    if ( m == 1) {
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == d) count++;
+        }
+        return count;
+    }
+
+    for (int i = 0; i < s.size(); i++) {
+        int j = i + 1;
+        sum = 0;
+        int arb = 1;
+        while ( arb < m && j < s.size()) {
+            sum += s[j];
+            j++;
+            arb++;
+        }
+        sum = sum + s[i];
+        if ( sum == d) count++;
+    }
+
+    return count;
+}
+
+int main()
+{
+    string num;
+    getline(cin, num);
+    
+    int size = stoi(ltrim(num));
+    
+    vector<int> arr(size);
+    
+    for (int i = 0; i < size; i++) {
+        
+        string numbers;
+        getline(cin, numbers);
+        
+        int items = stoi(ltrim(numbers));
+        
+        arr[i] = items;
+    }
+    
+    vector<int>::iterator itr;
+    
+    for (itr = arr.begin(); itr != arr.end(); itr++) {
+        
+        cout << *itr;
+    }
+    
+
+    return 0;
+}
+
+string ltrim (string &n) {
+
+    n.erase(
+        
+        find_if(n.rbegin(), n.rend(), not1(ptr_fun<int, int>(isspace))).base(), n.end()
+    );
+    
+    return n;
+}
