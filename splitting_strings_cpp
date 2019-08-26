@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isSpace(char a, char b)
+{
+    return a == b && a == ' ';
+}
+vector<string> splitN_strings(string str)
+{
+    vector <string> newString;
+    char delim = ' ';
+    
+    auto i = 0;
+    auto p = str.find(delim);
+    
+    while (p != -1) {
+        
+        newString.push_back(str.substr(i, p - i));
+        i = p + 1;
+        p = str.find(delim, i);
+    }
+    
+    newString.push_back(str.substr(i, min(p, str.length()) - i + 1));
+    
+    return newString;
+}
+
+int main()
+{
+    string s;
+    
+    cout <<"String : " ;
+    getline(cin, s);
+    
+    vector<string> result = splitN_strings(s);
+    
+    vector<int> finalArr(result.size());
+    
+    for (int i = 0; i < result.size(); i++) {
+        
+        int interm = stoi(result[i]);
+        
+        finalArr[i] = interm;
+    }
+    
+    for (int i = 0; i < finalArr.size(); i++) {
+        cout << finalArr[i] << " ";
+    }
+    
+    int x = finalArr[3];
+    int y = finalArr[2];
+    
+    cout << endl;
+    
+    cout << x+y;
+    
+    return 0;
+}
