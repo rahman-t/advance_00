@@ -1,0 +1,46 @@
+<apex:page standardController="Opportunity" docType="html-5.0">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie-edge" />
+            <title> Opportunity Stage Tips</title>
+            <meta name="Viewpoint" content="width=device-width initial-scale=1" />
+            <apex:slds />
+        </head>
+        <body>
+            <div class="slds-scope">
+                <article class="slds-card">
+                    <div class="slds-card__header slds-grid slds-theme_shade slds-m-bottom_x-small">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-canvas">
+                                    <svg aria-hidden="true" class="slds-icon, slds-icon_small">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#canvas')}"></use> 
+                                    </svg>
+                                    <span class="slds-assistive-text">Opportunity Stage</span>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                    <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Opporutnity">
+                                        <span class="slds-text-heading_small">Opportunity Stages</span>
+                                    </a>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-card__body_inner">
+                        <span rendered="{!Opportunity.StageName=='Prospecting'}">Here are a few tips for prospecting opportunities</span> <br/>
+                        <span rendered="{!Opportunity.StageName=='Needs Analysis'}">Here are a few tips for prospecting opportunities</span> <br/>
+                        <span rendered="{!Opportunity.StageName=='Proposal/Price Quote'}">A few tips for proposal and Price Quote</span> <br/>
+                        <span rendered="{!Opportunity.StageName=='Negotiating/Review'}">Here are a few tips for prospecting opportunities</span> <br/>
+                    </div>
+                </article>
+                <footer role="ContentInfo" class="slds-p-around_medium">
+                    <div class="slds-grid slds-grid_align-spread">
+                       <p class="slds-col">Opportunity Stage Tips</p>
+                       <p class="slds-col"> &copy; 2019</p>
+                    </div>
+                </footer>
+            </div>
+        </body>
+    </html>
+</apex:page>
