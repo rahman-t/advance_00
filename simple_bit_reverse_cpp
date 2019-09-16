@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//unsigned data type only holds positive numbers and zero; -12345 will be held as 12345. unsigned can be assigned only to
+//char, short, int, and long types. 
+
 int reverse_num(unsigned x){
     
     unsigned c = 0;
